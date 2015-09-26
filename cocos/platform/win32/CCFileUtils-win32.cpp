@@ -132,12 +132,20 @@ static std::string UTF8StringToMultiByte(const std::string& strUtf8)
     return ret;
 }
 
+static std::vector<WCHAR> getExecutablePath()
+{
+    std::vector<WCHAR> buf(CC_MAX_PATH);
+    while (GetModuleFileNameW(nullptr, &buf[0], buf.size()) >= buf.size() || ERROR_INSUFFICIENT_BUFFER == GetLastError())
+        buf.resize(buf.size() + CC_MAX_PATH);
+    return buf;
+}
+
 static void _checkPath()
 {
     if (s_resourcePath.empty())
     {
-        WCHAR *pUtf16ExePath = nullptr;
-        _get_wpgmptr(&pUtf16ExePath);
+        std::vector<WCHAR> exePath = getExecutablePath();
+        WCHAR *pUtf16ExePath = &exePath[0];
 
         // We need only directory part without exe
         WCHAR *pUtf16DirEnd = wcsrchr(pUtf16ExePath, L'\\');
