@@ -6507,6 +6507,7 @@
         "cocos/scripting/lua-bindings/auto/api/ComExtensionData.lua", 
         "cocos/scripting/lua-bindings/auto/api/ComRender.lua", 
         "cocos/scripting/lua-bindings/auto/api/Component.lua", 
+        "cocos/scripting/lua-bindings/auto/api/ComponentLua.lua", 
         "cocos/scripting/lua-bindings/auto/api/Console.lua", 
         "cocos/scripting/lua-bindings/auto/api/ContourData.lua", 
         "cocos/scripting/lua-bindings/auto/api/Control.lua", 
